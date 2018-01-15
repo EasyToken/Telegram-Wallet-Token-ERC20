@@ -1,1 +1,1 @@
-Telegramm Wallet for Token ERC20
+Telegram Wallet for Token ERC20
