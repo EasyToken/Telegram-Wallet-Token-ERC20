@@ -3,7 +3,9 @@ package ru.fastsrv.wallettoken;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -40,4 +42,32 @@ public class Start {
 		}
     }
 
+        public void CmdStartMenu (Update update)  {
+            EditMessageText editMessage = new EditMessageText();
+            editMessage.setChatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()));
+            editMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());     
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+            List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+                List<InlineKeyboardButton> RowInline1 = new ArrayList<>();
+                    List<InlineKeyboardButton> RowInline2 = new ArrayList<>();
+                    
+                RowInline1.add(new InlineKeyboardButton().setText("Wallets").setCallbackData("/Wallets"));
+                    RowInline2.add(new InlineKeyboardButton().setText("Add Token").setCallbackData("/AddToken"));
+        
+            keyboard.add(RowInline1);
+                keyboard.add(RowInline2);
+
+        String msg ="Wallet for Ethereum Tokens";
+        
+        markup.setKeyboard(keyboard);
+        
+        editMessage.setText(msg);
+        editMessage.setReplyMarkup(markup);
+        
+        try {
+            wt.editMessageText(editMessage);
+                } catch (TelegramApiException ex) {}
+    }
+        
 }

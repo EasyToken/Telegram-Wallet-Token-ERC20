@@ -3,6 +3,8 @@ package ru.fastsrv.wallettoken;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -17,6 +19,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 public class WalletToken  extends TelegramLongPollingBot {
 
         Config config = new Config();
+        Wallets wallets = new Wallets();
             SendMessage sendMessage = new SendMessage();
                                 
         public static void main(String[] args) throws IOException, InterruptedException, ExecutionException, TelegramApiRequestException {
@@ -52,7 +55,8 @@ public class WalletToken  extends TelegramLongPollingBot {
 		    
                 if (query.getData() != null)
                 {
-                    if (query.getData().equals("/Wallets")) {}
+                    if (query.getData().equals("/Wallets")) {try {wallets.GetAccounts(config.getUrl(), update);} catch (Exception ex) {System.out.println(ex);}}
+                    else if (query.getData().equals("/start")) {start.CmdStartMenu(update);}
                     else if (query.getData().equals("/AddToken")) {}
                 } 
             }               
