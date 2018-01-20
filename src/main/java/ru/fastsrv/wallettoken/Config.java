@@ -40,7 +40,26 @@ public class Config {
         ReadConfig();
         String Url = (String) jsonObject.get("Url");
         return Url;   
-    }   
+    }  
         
+        public Long getGasPrice() {
+        ReadConfig();
+        Integer GasPriceInt = (Integer) jsonObject.get("GasPrice");
+        Long GasPrice = Long.valueOf(GasPriceInt);
+        return GasPrice;   
+    }
+        
+        public Long getGasLimit() {
+        ReadConfig();
+        Integer GasLimitInt = (Integer) jsonObject.get("GasLimit");
+        Long GasLimit = Long.valueOf(GasLimitInt);
+        return GasLimit;   
+    }
+        
+        public String getTokenAddress() {
+        ReadConfig();
+        String TokenAddress = (String) jsonObject.get("TokenAddress");
+        return TokenAddress;   
+    }
 }
     

@@ -39,7 +39,7 @@ public class Wallets {
             
         for (int x = 0; x < ea.getAccounts().size(); x++) {
                 List<InlineKeyboardButton> RI = new ArrayList<>();
-                RI.add(new InlineKeyboardButton().setText(ea.getAccounts().get(x)).setCallbackData("/wallet:"+ea.getAccounts().get(x)));
+                RI.add(new InlineKeyboardButton().setText(ea.getAccounts().get(x)).setCallbackData("/Wallet:"+x));
                 keyboard.add(RI);          
         }
            

@@ -20,6 +20,7 @@ public class WalletToken  extends TelegramLongPollingBot {
 
         Config config = new Config();
         Wallets wallets = new Wallets();
+        Wallet wallet = new Wallet();
             SendMessage sendMessage = new SendMessage();
                                 
         public static void main(String[] args) throws IOException, InterruptedException, ExecutionException, TelegramApiRequestException {
@@ -57,7 +58,8 @@ public class WalletToken  extends TelegramLongPollingBot {
                 {
                     if (query.getData().equals("/Wallets")) {try {wallets.GetAccounts(config.getUrl(), update);} catch (Exception ex) {System.out.println(ex);}}
                     else if (query.getData().equals("/start")) {start.CmdStartMenu(update);}
-                    else if (query.getData().equals("/AddToken")) {}
+                    else if (query.getData().startsWith("/Wallet:")) {try {wallet.Wallet(update, query.getData());} catch (Exception ex) {System.out.println(ex);}}
+                    
                 } 
             }               
     }
