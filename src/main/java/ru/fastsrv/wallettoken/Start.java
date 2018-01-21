@@ -18,6 +18,7 @@ public class Start {
         public void CmdStart (Message message)  {
             sendMessage.enableMarkdown(true);
             sendMessage.setChatId(message.getChatId().toString());
+            
         System.out.println(message.getChat());    
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
@@ -26,10 +27,8 @@ public class Start {
                     List<InlineKeyboardButton> RowInline2 = new ArrayList<>();
                     
                 RowInline1.add(new InlineKeyboardButton().setText("Wallets").setCallbackData("/Wallets"));
-                    RowInline2.add(new InlineKeyboardButton().setText("Add Token").setCallbackData("/AddToken"));
         
             keyboard.add(RowInline1);
-                keyboard.add(RowInline2);
                 
             markup.setKeyboard(keyboard);
 
@@ -53,7 +52,6 @@ public class Start {
                     List<InlineKeyboardButton> RowInline2 = new ArrayList<>();
                     
                 RowInline1.add(new InlineKeyboardButton().setText("Wallets").setCallbackData("/Wallets"));
-                    RowInline2.add(new InlineKeyboardButton().setText("Add Token").setCallbackData("/AddToken"));
         
             keyboard.add(RowInline1);
                 keyboard.add(RowInline2);

@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -18,24 +20,26 @@ import org.web3j.protocol.core.methods.response.EthAccounts;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.protocol.parity.Parity;
 
+import static org.web3j.tx.Contract.GAS_LIMIT;
+import static org.web3j.tx.ManagedTransaction.GAS_PRICE;
+
+
 public class Wallet {
+            SendMessage sendMessage = new SendMessage();
  Config config = new Config();
-    public void Wallet (Update update, String data) throws IOException {
+ 
+    public void Wallet (Update update) throws IOException, CipherException {
         WalletToken wt = new WalletToken();
-        int idaddress = Integer.valueOf(data.replaceAll("/Wallet:", ""));
         
 Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
-            Parity parity = Parity.build(new HttpService(config.getUrl()));
-    
-            EthAccounts ea = web3.ethAccounts().send();
-            System.out.println(ea);
 
-String account = web3.ethAccounts().send().getAccounts().get(idaddress);
-Credentials credentials = Credentials.create(account);
+        Credentials credentials = WalletUtils.loadCredentials("", config.getPathWalletKey()+""+config.getFileNameKey());
 
-        TokenERC20 token = TokenERC20.load(config.getTokenAddress(), web3, credentials, BigInteger.valueOf(3000000), BigInteger.valueOf(2100000));
-System.out.println(token);
+        TokenERC20 token = TokenERC20.load(config.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
+
         try {
+        String walletaddress = credentials.getAddress();
+            
         String name = token.name().send();
         System.out.println("Token Name: " +name);
         
@@ -48,8 +52,8 @@ System.out.println(token);
         BigInteger totalSupply = token.totalSupply().send();
         System.out.println("Token Total Sypply: "+ totalSupply.toString());
         
-        BigInteger balance = token.balanceOf(ea.getAccounts().get(idaddress)).send();
-        System.out.println("Token Balance: " + account + " : " + balance.toString());
+        BigInteger balance = token.balanceOf(walletaddress).send();
+        System.out.println("Token Balance: " + walletaddress + " : " + balance.toString());
         
         ////////////////////////////////////////////
         EditMessageText editMessage = new EditMessageText();
@@ -58,14 +62,16 @@ System.out.println(token);
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup(); 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         
-        
+            List<InlineKeyboardButton> RI = new ArrayList<>();
+            RI.add(new InlineKeyboardButton().setText("Update").setCallbackData("/Wallet"));
+            keyboard.add(RI);
         
         List<InlineKeyboardButton> RI1 = new ArrayList<>();
         RI1.add(new InlineKeyboardButton().setText("Back").setCallbackData("/Wallets"));
-        RI1.add(new InlineKeyboardButton().setText("Send Token").setCallbackData("/SendToken"));
+
         keyboard.add(RI1);
         
-                String msg ="Address: "+account +": "
+                String msg ="Address: "+walletaddress+": "
                         + "\n Name Token: "+name+""
                         + "\n Balance: "+balance+" "+symbol;
         
@@ -78,6 +84,41 @@ System.out.println(token);
     
         } catch (Exception ex) {System.out.println("Exception: "+ex);}
 
+    }
+    
+    public void SendToken (Message message, String data) throws IOException, CipherException {
+        sendMessage.enableMarkdown(true);
+            sendMessage.setChatId(message.getChatId().toString());
+                WalletToken wt = new WalletToken();
+
+        String[] send_value = data.split(" ");
+
+Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
+
+        Credentials credentials = WalletUtils.loadCredentials("", config.getPathWalletKey()+""+config.getFileNameKey());
+
+        TokenERC20 token = TokenERC20.load(config.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
+        
+        int value = Integer.valueOf(send_value[2]);
+        try {
+        String status = token.transfer(send_value[1], BigInteger.valueOf(value)).send().getStatus();
+        ////////////////////////////////////////////
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup(); 
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+        
+        List<InlineKeyboardButton> RI1 = new ArrayList<>();
+        RI1.add(new InlineKeyboardButton().setText("Back").setCallbackData("/Wallet"));
+        keyboard.add(RI1);
+        
+        markup.setKeyboard(keyboard);
+        
+        sendMessage.setReplyMarkup(markup);
+        if (status.equals("0x1")) {status = "successfully";} else {status = "not successful";}
+        sendMessage.setText("Send Token status: " + status);
+
+			wt.sendMessage(sendMessage);
+    
+        } catch (Exception ex) {System.out.println("Exception: "+ex);}
     }
     
 }

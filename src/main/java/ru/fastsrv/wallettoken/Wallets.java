@@ -14,6 +14,9 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import org.web3j.crypto.CipherException;
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.EthAccounts;
 import org.web3j.protocol.http.HttpService;
@@ -22,13 +25,13 @@ import org.web3j.protocol.parity.Parity;
 public class Wallets {
     
         SendMessage sendMessage = new SendMessage();
-            
-        public void GetAccounts(String url, Update update) throws IOException, ParseException {
+             Config config = new Config();
+             
+        public void GetAccounts(String url, Update update) throws IOException, ParseException, CipherException {
         WalletToken wt = new WalletToken();
         Web3j web3 = Web3j.build(new HttpService(url));
-            Parity parity = Parity.build(new HttpService(url));
-    
-            EthAccounts ea = web3.ethAccounts().send();
+
+            Credentials credentials = WalletUtils.loadCredentials("", config.getPathWalletKey()+""+config.getFileNameKey());
                 
                 ///////////////////////////////////
         EditMessageText editMessage = new EditMessageText();
@@ -37,12 +40,11 @@ public class Wallets {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup(); 
             List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
             
-        for (int x = 0; x < ea.getAccounts().size(); x++) {
-                List<InlineKeyboardButton> RI = new ArrayList<>();
-                RI.add(new InlineKeyboardButton().setText(ea.getAccounts().get(x)).setCallbackData("/Wallet:"+x));
-                keyboard.add(RI);          
-        }
-           
+            String walletaddress = credentials.getAddress();
+           List<InlineKeyboardButton> RI = new ArrayList<>();
+            RI.add(new InlineKeyboardButton().setText(walletaddress).setCallbackData("/Wallet"));
+            keyboard.add(RI);
+            
             List<InlineKeyboardButton> RI1 = new ArrayList<>();
             RI1.add(new InlineKeyboardButton().setText("Back").setCallbackData("/start"));
             keyboard.add(RI1);
