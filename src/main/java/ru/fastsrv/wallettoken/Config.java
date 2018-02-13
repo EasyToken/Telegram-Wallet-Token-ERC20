@@ -48,16 +48,15 @@ public class Config {
         return TokenAddress;   
     }
         
-        public String getPathWalletKey() {
+        public String getDirWalletKey() {
         ReadConfig();
-        String PathWalletKey = (String) jsonObject.get("PathWalletKey");
-        return PathWalletKey;   
+        String DirWalletKey = (String) jsonObject.get("DirWalletKey");
+        return DirWalletKey;   
     }
         
-        public String getFileNameKey() {
-        ReadConfig();
-        String FileNameKey = (String) jsonObject.get("FileNameKey");
-        return FileNameKey;   
-    }
+        public String getPassword(){
+            String PasswordWallet = (String) jsonObject.get("PasswordWallet");
+            return PasswordWallet;
+        }
 }
     

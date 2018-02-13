@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import net.glxn.qrgen.core.image.ImageType;
+import net.glxn.qrgen.javase.QRCode;
+import static org.telegram.telegrambots.api.methods.ParseMode.HTML;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
@@ -28,12 +32,29 @@ public class Wallet {
             SendMessage sendMessage = new SendMessage();
  Config config = new Config();
  
+ File[] listfiles;
+ Credentials credentials;
+ 
     public void Wallet (Update update) throws IOException, CipherException {
         WalletToken wt = new WalletToken();
         
 Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
 
-        Credentials credentials = WalletUtils.loadCredentials("", config.getPathWalletKey()+""+config.getFileNameKey());
+//////////////////////
+        File KeyDir = new File(config.getDirWalletKey());
+        if (!KeyDir.exists()) {
+            KeyDir.mkdirs();   
+        } else {
+                            // Проверяем есть ли кошельки
+        listfiles = KeyDir.listFiles();
+        if (listfiles.length != 0 ) {
+        credentials = WalletUtils.loadCredentials(config.getPassword(), config.getDirWalletKey()+""+listfiles[0].getName());
+        } else {
+            System.out.println("Файл Кошелька не обнаружен");
+        }
+            
+        }
+        //////////////////////
 
         TokenERC20 token = TokenERC20.load(config.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
 
@@ -65,13 +86,17 @@ Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
             List<InlineKeyboardButton> RI = new ArrayList<>();
             RI.add(new InlineKeyboardButton().setText("Update").setCallbackData("/Wallet"));
             keyboard.add(RI);
-        
-        List<InlineKeyboardButton> RI1 = new ArrayList<>();
-        RI1.add(new InlineKeyboardButton().setText("Back").setCallbackData("/Wallets"));
+            
+            List<InlineKeyboardButton> RI2 = new ArrayList<>();
+            RI2.add(new InlineKeyboardButton().setText("Back").setCallbackData("/Wallets"));
+            keyboard.add(RI2);
+  
+  
+        //File file = QRCode.from(walletaddress).to(ImageType.PNG).withSize(250, 250).file();
 
-        keyboard.add(RI1);
         
-                String msg ="Address: "+walletaddress+": "
+                String msg =""
+                        + "\n Address: "+walletaddress+": "
                         + "\n Name Token: "+name+""
                         + "\n Balance: "+balance+" "+symbol;
         
@@ -81,21 +106,22 @@ Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
         editMessage.setReplyMarkup(markup);
         
             wt.editMessageText(editMessage);
-    
+                            //wt.sendPhoto(sendPhotoRequest);
         } catch (Exception ex) {System.out.println("Exception: "+ex);}
 
     }
     
     public void SendToken (Message message, String data) throws IOException, CipherException {
+        WalletToken wt = new WalletToken();
+        
         sendMessage.enableMarkdown(true);
-            sendMessage.setChatId(message.getChatId().toString());
-                WalletToken wt = new WalletToken();
-
+            sendMessage.setChatId(message.getChatId().toString());   
+            
         String[] send_value = data.split(" ");
 
 Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
 
-        Credentials credentials = WalletUtils.loadCredentials("", config.getPathWalletKey()+""+config.getFileNameKey());
+        Credentials credentials = WalletUtils.loadCredentials(config.getPassword(), config.getDirWalletKey()+""+listfiles[0].getName());
 
         TokenERC20 token = TokenERC20.load(config.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
         
@@ -113,11 +139,12 @@ Web3j web3 = Web3j.build(new HttpService(config.getUrl()));
         markup.setKeyboard(keyboard);
         
         sendMessage.setReplyMarkup(markup);
+        
         if (status.equals("0x1")) {status = "successfully";} else {status = "not successful";}
         sendMessage.setText("Send Token status: " + status);
 
 			wt.sendMessage(sendMessage);
-    
+
         } catch (Exception ex) {System.out.println("Exception: "+ex);}
     }
     

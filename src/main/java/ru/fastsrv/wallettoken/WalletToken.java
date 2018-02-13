@@ -51,7 +51,7 @@ public class WalletToken  extends TelegramLongPollingBot {
 		if (message != null && message.hasText()) 
                 {System.out.println(message.getText());
                 	if (message.getText().equals("/start")) {start.CmdStart(message);}
-                        else if (message.getText().startsWith("/Send ")) {try {wallet.SendToken(message, message.getText());} catch (Exception ex) {System.out.println(ex);}}
+                        else if (message.getText().startsWith("/Send")) {try {wallet.SendToken(message, message.getText());} catch (Exception ex) {System.out.println(ex);}}
 		}
                 else if (update.hasCallbackQuery()) {
 		    
