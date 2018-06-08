@@ -1,7 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e711a144-7f7d-4748-b3e4-b44304fd5fa0" name="Default" comment="" />
+    <list default="true" id="e711a144-7f7d-4748-b3e4-b44304fd5fa0" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_72.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_jaxrs_jackson_jaxrs_base_2_8_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_jaxrs_jackson_jaxrs_json_provider_2_8_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_8_7.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jai_imageio_jai_imageio_core_1_3_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jffi_1_2_14.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jffi_native_1_2_14.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_constants_0_9_6.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_enxio_0_14.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_ffi_2_1_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_posix_3_0_33.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_unixsocket_0_15.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jnr_jnr_x86asm_1_0_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_kenglxn_qrgen_core_2_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_kenglxn_qrgen_javase_2_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_4_1_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_zxing_core_3_3_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_zxing_javase_3_3_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_logging_interceptor_3_8_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_8_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_13_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava_1_2_4.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_2.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_javax_ws_rs_api_2_0_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_10.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_6.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_54.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_grizzly_grizzly_framework_2_3_28.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_grizzly_grizzly_http_2_3_28.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_grizzly_grizzly_http_server_2_3_28.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_aopalliance_repackaged_2_5_0_b32.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_external_javax_inject_2_5_0_b32.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_api_2_5_0_b32.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_locator_2_5_0_b32.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_hk2_utils_2_5_0_b32.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_hk2_osgi_resource_locator_1_0_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_bundles_repackaged_jersey_guava_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_containers_jersey_container_grizzly2_http_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_client_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_common_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_core_jersey_server_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_ext_jersey_entity_filtering_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_jaxb_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jersey_media_jersey_media_json_jackson_2_25_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20160810.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_analysis_5_0_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_commons_5_0_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_tree_5_0_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_util_5_0_3.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_telegram_telegrambots_3_6_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_telegram_telegrambots_meta_3_6_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_abi_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_core_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_crypto_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_parity_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_rlp_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_tuples_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_web3j_utils_3_4_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_xerial_sqlite_jdbc_3_21_0_1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/Config.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/Start.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/TelegramWallet.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/Wallet.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/WalletList.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/Config.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/Start.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TelegramWallet.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$1.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$10.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$11.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$12.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$13.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$14.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$15.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$16.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$17.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$18.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$2.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$3.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$4.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$5.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$6.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$7.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$8.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$9.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$BurnEventResponse.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20$TransferEventResponse.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/TokenERC20.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/Wallet.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/ru/easytoken/telegramwallet/WalletList.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/telegramwallet.iml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fastsrv/wallettoken/Config.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fastsrv/wallettoken/Start.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fastsrv/wallettoken/TokenERC20.java" afterPath="$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/TokenERC20.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fastsrv/wallettoken/Wallet.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fastsrv/wallettoken/WalletToken.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/fastsrv/wallettoken/Wallets.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.netbeans_automatic_build" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$10.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$11.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$12.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$13.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$14.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$15.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$16.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$17.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$18.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$2.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$3.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$4.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$5.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$6.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$7.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$8.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/token/TokenERC20$9.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/Config.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/Start.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$10.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$11.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$12.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$13.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$14.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$15.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$16.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$17.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$18.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$2.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$3.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$4.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$5.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$6.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$7.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$8.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$9.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$BurnEventResponse.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20$TransferEventResponse.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/TokenERC20.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/Wallet.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/WalletToken.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/fastsrv/wallettoken/Wallets.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/.netbeans_automatic_build" afterPath="" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,10 +181,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
+            <state relative-caret-position="288">
               <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
               <folding />
             </state>
@@ -49,7 +217,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/Config.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -107,6 +275,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -140,14 +311,15 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="408" />
     <option name="y" value="41" />
     <option name="width" value="1223" />
     <option name="height" value="696" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -211,13 +383,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="telegramwallet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="telegramwallet" type="b2602c69:ProjectViewProjectNode" />
-              <item name="telegramwallet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -368,15 +533,16 @@
       <updated>1525968727256</updated>
       <workItem from="1525968738509" duration="1019000" />
       <workItem from="1528359821701" duration="1169000" />
-      <workItem from="1528444659310" duration="1131000" />
+      <workItem from="1528444659310" duration="1484000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3319000" />
+    <option name="totallyTimeSpent" value="3672000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="408" y="41" width="1223" height="696" extended-state="0" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -387,12 +553,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44852942" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26236558" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25828376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16221985" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -546,14 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/config.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/package-info.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/easytoken/telegramwallet/TokenERC20.java">
@@ -616,6 +774,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
