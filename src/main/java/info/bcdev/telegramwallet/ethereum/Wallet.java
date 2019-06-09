@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
@@ -39,6 +40,23 @@ public class Wallet extends Keyboard {
 
     Tbot tbot = Tbot.INSTANCE;
 
+    private void loadFileWallet() throws IOException, CipherException {
+        File KeyDir = new File(settings.getWalletDir());
+        if (!KeyDir.exists()) {
+            KeyDir.mkdirs();
+        } else {
+            // Проверяем есть ли кошельки
+            listfiles = KeyDir.listFiles();
+            System.out.println(listfiles.length);
+            if (listfiles.length != 0) {
+                credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[0].getName());
+            } else {
+                System.out.println("File Wallet not found");
+            }
+
+        }
+    }
+
     public void Wallet (Update update) throws IOException, CipherException {
         Tbot tbot = Tbot.INSTANCE;
 
@@ -48,22 +66,7 @@ public class Wallet extends Keyboard {
 
         Web3j web3 = Web3j.build(new HttpService(settings.getNodeUrl()));
 
-//////////////////////
-        File KeyDir = new File(settings.getWalletDir());
-        if (!KeyDir.exists()) {
-            KeyDir.mkdirs();
-        } else {
-            // Проверяем есть ли кошельки
-            listfiles = KeyDir.listFiles();
-            if (listfiles.length != 0) {
-                credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[0].getName());
-            } else {
-                System.out.println("Файл Кошелька не обнаружен");
-            }
-
-        }
-
-       //////////////////////
+        loadFileWallet();
 
         TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
 
@@ -112,19 +115,28 @@ public class Wallet extends Keyboard {
 
     public void SendToken (Message message, String data) throws IOException, CipherException {
 
+        loadFileWallet();
+
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
         String[] send_value = data.split(" ");
 
         Web3j web3 = Web3j.build(new HttpService(settings.getNodeUrl()));
-
+        System.out.println(settings.getWalletDir());
+        System.out.println(listfiles.length);
         Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir()+""+listfiles[0].getName());
 
-        TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
+        BigInteger gasPrice = BigInteger.valueOf(440000);
+        BigInteger gasLimit = BigInteger.valueOf(55000);
+
+        TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, gasPrice, gasLimit);
 
         int value = Integer.valueOf(send_value[2]);
+
         try {
+            System.out.println(send_value[1]);
+            System.out.println(BigInteger.valueOf(value));
             String status = token.transfer(send_value[1], BigInteger.valueOf(value)).send().getStatus();
 
             InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
@@ -139,11 +151,17 @@ public class Wallet extends Keyboard {
             sendMessage.setReplyMarkup(markup);
 
             if (status.equals("0x1")) {status = "successfully";} else {status = "not successful";}
+            System.out.println(status);
             sendMessage.setText("Send Token status: " + status);
 
-            tbot.execute(sendMessage);
 
-        } catch (Exception ex) {System.out.println("Exception: "+ex);}
+            tbot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

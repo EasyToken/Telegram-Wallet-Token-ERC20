@@ -51,7 +51,7 @@ public class WalletList extends Keyboard {
                 }
             } else {
                 // Если кошелек создан
-                System.out.println("Файл Кошелька: "+ listfiles[0].getName());
+                System.out.println("File Wallet: "+ listfiles[0].getName());
             }
 
         }

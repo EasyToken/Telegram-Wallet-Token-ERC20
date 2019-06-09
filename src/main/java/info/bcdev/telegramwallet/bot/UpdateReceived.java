@@ -38,9 +38,9 @@ public class UpdateReceived {
                 start.CmdStart(message);
             } else if (message.getText().startsWith("/Send")) {
                 try {
-                    //wallet.SendToken(message, message.getText());
+                    wallet.SendToken(message, message.getText());
                 } catch (Exception ex) {
-                    System.out.println(ex);
+                    ex.printStackTrace();
                 }
             }
         } else if (update.hasCallbackQuery()) {
