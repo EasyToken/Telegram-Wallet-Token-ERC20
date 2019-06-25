@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d9a7889f-4c24-43b0-9151-86ce514b2bac" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_25_1_jre.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_vdurmont_emoji_java_4_0_0.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_2_0_0.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_telegram_telegrambots_4_3_1.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_telegram_telegrambots_meta_4_3_1.xml" />
@@ -57,7 +58,7 @@
       <file leaf-file-name="WalletList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/WalletList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
+            <state relative-caret-position="690">
               <caret line="70" column="2" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="31" />
               <folding>
                 <element signature="e#3574#3575#0" expanded="true" />
@@ -85,8 +86,8 @@
       <file leaf-file-name="Settings.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="37" />
+            <state relative-caret-position="300">
+              <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="37" />
               <folding>
                 <element signature="method#configRead#0;class#Settings#0" expanded="false" />
                 <element signature="method#setParamsSettings#0;class#Settings#0" expanded="false" />
@@ -107,8 +108,8 @@
       <file leaf-file-name="UpdateReceived.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+            <state relative-caret-position="-813">
+              <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4414#4415#0" expanded="true" />
@@ -137,7 +138,7 @@
       <file leaf-file-name="Wallet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-537">
+            <state relative-caret-position="450">
               <caret line="64" column="21" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="21" />
               <folding>
                 <element signature="e#8183#8184#0" expanded="true" />
@@ -154,7 +155,7 @@
       <file leaf-file-name="start.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/start.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="420">
               <caret line="40" column="60" lean-forward="false" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
               <folding>
                 <element signature="e#905#906#0" expanded="true" />
@@ -766,19 +767,18 @@
       <workItem from="1561452055140" duration="3275000" />
       <workItem from="1561474772304" duration="722000" />
       <workItem from="1561475512171" duration="713000" />
+      <workItem from="1561477053452" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58989000" />
+    <option name="totallyTimeSpent" value="59003000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="23" width="1391" height="877" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -805,6 +805,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987398" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938075" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1159,7 +1160,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/WalletList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="690">
           <caret line="70" column="2" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="71" selection-end-column="31" />
           <folding>
             <element signature="e#3574#3575#0" expanded="true" />
@@ -1170,7 +1171,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-537">
+        <state relative-caret-position="450">
           <caret line="64" column="21" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="21" />
           <folding>
             <element signature="e#8183#8184#0" expanded="true" />
@@ -1193,7 +1194,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/start.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
+        <state relative-caret-position="420">
           <caret line="40" column="60" lean-forward="false" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
           <folding>
             <element signature="e#905#906#0" expanded="true" />
@@ -1207,8 +1208,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="37" />
+        <state relative-caret-position="300">
+          <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="37" />
           <folding>
             <element signature="method#configRead#0;class#Settings#0" expanded="false" />
             <element signature="method#setParamsSettings#0;class#Settings#0" expanded="false" />
@@ -1227,8 +1228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+        <state relative-caret-position="-813">
+          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4414#4415#0" expanded="true" />
