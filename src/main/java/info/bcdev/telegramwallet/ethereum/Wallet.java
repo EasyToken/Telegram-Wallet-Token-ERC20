@@ -1,16 +1,17 @@
 package info.bcdev.telegramwallet.ethereum;
 
+import com.vdurmont.emoji.EmojiParser;
 import info.bcdev.telegramwallet.Main;
 import info.bcdev.telegramwallet.Settings;
 import info.bcdev.telegramwallet.bot.Keyboard;
 import info.bcdev.telegramwallet.bot.Tbot;
 import info.bcdev.telegramwallet.erc20.TokenERC20;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.web3j.crypto.CipherException;
@@ -18,6 +19,11 @@ import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.RawTransactionManager;
+import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.ContractGasProvider;
+import org.web3j.tx.gas.DefaultGasProvider;
+import org.web3j.utils.Convert;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,14 +38,17 @@ import static org.web3j.tx.gas.DefaultGasProvider.GAS_PRICE;
 
 
 public class Wallet extends Keyboard {
-    SendMessage sendMessage = new SendMessage();
-    Settings settings = Main.settings;
+    private SendMessage sendMessage = new SendMessage();
+    private Settings settings = Main.settings;
 
-    File[] listfiles;
-    Credentials credentials;
+    /*private File[] listfiles;*/
+    private Credentials credentials;
 
-    Tbot tbot = Tbot.INSTANCE;
+    private Tbot tbot;
+    public static Map<String,String> TRANSACTION_VALUE = new HashMap<>();
 
+    /*
+    @Deprecated
     private void loadFileWallet() throws IOException, CipherException {
         File KeyDir = new File(settings.getWalletDir());
         if (!KeyDir.exists()) {
@@ -49,111 +58,170 @@ public class Wallet extends Keyboard {
             listfiles = KeyDir.listFiles();
             System.out.println(listfiles.length);
             if (listfiles.length != 0) {
+
                 credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[0].getName());
+
             } else {
                 System.out.println("File Wallet not found");
             }
 
         }
     }
+    */
 
     public void Wallet (Update update) throws IOException, CipherException {
-        Tbot tbot = Tbot.INSTANCE;
+        tbot = Tbot.INSTANCE;
+        Message message = update.getMessage();
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(message.getChatId().toString());
 
-        EditMessageText editMessage = new EditMessageText();
-        editMessage.setChatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()));
-        editMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
+        String walletaddress = message.getText().split(" ")[1];
+        setActiveWallet(walletaddress);
+        credentials = getCredentials(walletaddress);
 
         Web3j web3 = Web3j.build(new HttpService(settings.getNodeUrl()));
 
-        loadFileWallet();
-
+        /*
+        @Deprecated
         TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, GAS_PRICE, GAS_LIMIT);
+        */
+
+        ContractGasProvider contractGasProvider = new DefaultGasProvider();
+        TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, contractGasProvider);
 
         try {
-            String walletaddress = credentials.getAddress();
+           // String walletaddress = credentials.getAddress();
             String name = token.name().send();
-            System.out.println("Token Name: " +name);
 
             String symbol = token.symbol().send();
-            System.out.println("Token Symbol: "+symbol);
 
             String address = token.getContractAddress();
-            System.out.println("Token Adress: "+address);
 
             BigInteger totalSupply = token.totalSupply().send();
-            System.out.println("Token Total Sypply: "+ totalSupply.toString());
 
             BigInteger balance = token.balanceOf(walletaddress).send();
-            System.out.println("Token Balance: " + walletaddress + " : " + balance.toString());
 
             ///////////////////////////////////////////
 
-            Map<String, String> keyboard = new HashMap<>();
+            /*Map<String, String> keyboard = new HashMap<>();
             keyboard.put("Back","/Wallets");
 
-            InlineKeyboardMarkup inlineKB = getInline(1,keyboard);
+            InlineKeyboardMarkup inlineKB = getInline(1,keyboard);*/
 
 
             //File file = QRCode.from(walletaddress).to(ImageType.PNG).withSize(250, 250).file();
 
+            List<String> list = new ArrayList<>();
+            String em;
+            em = EmojiParser.parseToUnicode("\uD83D\uDCB3");
+            list.add(em + " SendToken");
+
+            em = EmojiParser.parseToUnicode("\uD83D\uDC48");
+            list.add(em+" Back");
+            ReplyKeyboardMarkup replyKeyboardMarkup = getReply(2,list);
 
             String msg =""
                     + "\n Address: "+walletaddress+": "
                     + "\n Name Token: "+name+""
                     + "\n Balance: "+balance+" "+symbol;
 
-            editMessage.setText(msg);
-            editMessage.setReplyMarkup(inlineKB);
+            /*editMessage.setText(msg);
+            editMessage.setReplyMarkup(inlineKB);*/
 
-            tbot.execute(editMessage);
+            sendMessage.setText(msg);
+            sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
+            tbot.execute(sendMessage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
 
-    public void SendToken (Message message, String data) throws IOException, CipherException {
+    private Credentials getCredentials(String walletaddress){
+        for (WalletsInstance walletsInstance : Settings.WALLET_INSTANCE_LIST){
+            if(walletsInstance.checkWallet(walletaddress)){
+                return walletsInstance.getCredentials();
+            }
+        }
+        return null;
+    }
 
-        loadFileWallet();
+    public void EnterAddress(Message message) {
 
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
-        String[] send_value = data.split(" ");
+        sendMessage.setText("Enter wallet address");
+        setSendStep("enterammount");
+        try {
+            tbot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void EnterAmmount(Message message) {
+        Tbot tbot = Tbot.INSTANCE;
+
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(message.getChatId().toString());
+
+        sendMessage.setText("Enter wallet ammount");
+        setSendStep("sending");
+        try {
+            tbot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void SendToken(Message message) {
+
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(message.getChatId().toString());
+
+        /*sendMessage.setText("Sending...");
+        try {
+            tbot.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+        Send(message);
+    }
+
+    public void Send(Message message) {
+
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(message.getChatId().toString());
 
         Web3j web3 = Web3j.build(new HttpService(settings.getNodeUrl()));
-        System.out.println(settings.getWalletDir());
-        System.out.println(listfiles.length);
-        Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir()+""+listfiles[0].getName());
 
-        BigInteger gasPrice = BigInteger.valueOf(440000);
-        BigInteger gasLimit = BigInteger.valueOf(55000);
+        Credentials credentials = getCredentials(getActiveWallet());
 
-        TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, gasPrice, gasLimit);
+        /*
+        @Deprecated
+        TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, getGasPrice("50"), getGasLimit("60000"));
+        */
 
-        int value = Integer.valueOf(send_value[2]);
+        ContractGasProvider contractGasProvider = new DefaultGasProvider();
+        TokenERC20 token = TokenERC20.load(settings.getTokenAddress(), web3, credentials, contractGasProvider);
+
+        String addressto = TRANSACTION_VALUE.get("addressto");
+        int ammount = Integer.valueOf(TRANSACTION_VALUE.get("ammount"));
+
 
         try {
-            System.out.println(send_value[1]);
-            System.out.println(BigInteger.valueOf(value));
-            String status = token.transfer(send_value[1], BigInteger.valueOf(value)).send().getStatus();
-
-            InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-            List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
-
-            List<InlineKeyboardButton> RI1 = new ArrayList<>();
-            RI1.add(new InlineKeyboardButton().setText("Back").setCallbackData("/Wallet"));
-            keyboard.add(RI1);
-
-            markup.setKeyboard(keyboard);
-
-            sendMessage.setReplyMarkup(markup);
+            String status = token.transfer(addressto, BigInteger.valueOf(ammount)).send().getStatus();
 
             if (status.equals("0x1")) {status = "successfully";} else {status = "not successful";}
-            System.out.println(status);
             sendMessage.setText("Send Token status: " + status);
-
 
             tbot.execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -161,7 +229,26 @@ public class Wallet extends Keyboard {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
 
+/*    private BigInteger getGasPrice(String mValueGasPrice){
+        return Convert.toWei(mValueGasPrice, Convert.Unit.GWEI).toBigInteger();
+    }
+
+    private BigInteger getGasLimit(String mValueGasLimit){
+        return BigInteger.valueOf(Long.valueOf(mValueGasLimit));
+    }*/
+
+    private void setActiveWallet(String w){
+        Settings.ACTIVE_WALLET = w;
+    }
+
+    private String getActiveWallet(){
+        return Settings.ACTIVE_WALLET;
+    }
+
+    private void setSendStep(String s){
+        Settings.SEND_STEP = s;
     }
 }

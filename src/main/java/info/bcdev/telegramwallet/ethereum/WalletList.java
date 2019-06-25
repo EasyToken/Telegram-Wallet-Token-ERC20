@@ -1,13 +1,16 @@
 package info.bcdev.telegramwallet.ethereum;
 
+import com.vdurmont.emoji.EmojiParser;
 import info.bcdev.telegramwallet.Main;
 import info.bcdev.telegramwallet.Settings;
 import info.bcdev.telegramwallet.bot.Keyboard;
 import info.bcdev.telegramwallet.bot.Tbot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.web3j.crypto.CipherException;
@@ -29,9 +32,13 @@ public class WalletList extends Keyboard {
     Settings settings = Main.settings;
     File[] listfiles;
 
-    public void GetAccounts(String url, Update update) throws IOException, CipherException {
+    public void GetAccounts(Message message) throws IOException, CipherException {
         Tbot tbot = Tbot.INSTANCE;
-        Web3j web3 = Web3j.build(new HttpService(url));
+
+        sendMessage.enableMarkdown(true);
+        sendMessage.setChatId(message.getChatId().toString());
+
+        List<WalletsInstance> walletsInstanceList = new ArrayList<>();
 
         //////////////////////
         File KeyDir = new File(settings.getWalletDir());
@@ -39,48 +46,74 @@ public class WalletList extends Keyboard {
             KeyDir.mkdirs();
         } else {
 
-            // Проверяем есть ли кошельки
-            listfiles = KeyDir.listFiles();
-            if (listfiles.length == 0 ) {
-                // Если в директории нет файла кошелька, добавляем кошелек
+            listfiles = loadFiles(KeyDir);
+
+            for (int i = 0; i < listfiles.length; i++){
+
+                //////////////////////
+                if (listfiles[i].getName().endsWith(".json")) {
+                    Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[i].getName());
+                    ///////////////////////////////////
+                    String walletaddress = credentials.getAddress();
+                    walletsInstanceList.add(new WalletsInstance(walletaddress, credentials));
+                }
+            }
+        }
+        Settings.WALLET_INSTANCE_LIST = walletsInstanceList;
+
+        String em;
+
+        List<String> list = getWalletAdresses(walletsInstanceList);
+
+        em = EmojiParser.parseToUnicode("\uD83D\uDCCB");
+        list.add(em+ " Add New Wallet");
+
+/*        em = EmojiParser.parseToUnicode("\uD83D\uDC48");
+        list.add(em+" Back");*/
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1,list);
+
+        String msg ="Your wallet list";
+
+        sendMessage.setText(msg);
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+
+        try {
+            tbot.execute(sendMessage);
+        } catch (TelegramApiException ex) {}
+
+    }
+
+    private List<String> getWalletAdresses(List<WalletsInstance> list){
+        List<String> addresslist = new ArrayList<>();
+        if (list != null) {
+            String em;
+            for (WalletsInstance walletsInstance : list) {
+                em = EmojiParser.parseToUnicode("\uD83D\uDCB0");
+                addresslist.add(em+" "+walletsInstance.getWalletaddress());
+            }
+        }
+        return addresslist;
+    }
+
+    private File[] loadFiles(File KeyDir){
+        return KeyDir.listFiles();
+    }
+
+    public Boolean createWallet(){
+        File KeyDir = new File(settings.getWalletDir());
+        if (!KeyDir.exists()) {
+            KeyDir.mkdirs();
+        } else {
                 try {
                     String fileName = WalletUtils.generateNewWalletFile(settings.getWalletPassword(), KeyDir, false);
-                    System.out.println("FileName: " + KeyDir.getPath() + fileName);
+
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-            } else {
-                // Если кошелек создан
-                System.out.println("File Wallet: "+ listfiles[0].getName());
-            }
-
+                return true;
         }
-        //////////////////////
-        listfiles = KeyDir.listFiles();
-        Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir()+""+listfiles[0].getName());
-
-        ///////////////////////////////////
-        EditMessageText editMessage = new EditMessageText();
-        editMessage.setChatId(String.valueOf(update.getCallbackQuery().getMessage().getChatId()));
-        editMessage.setMessageId(update.getCallbackQuery().getMessage().getMessageId());
-
-        String walletaddress = credentials.getAddress();
-
-        Map<String, String> keyboard = new HashMap<>();
-        keyboard.put(walletaddress,"/Wallet");
-        keyboard.put("Back","/start");
-
-        InlineKeyboardMarkup inlineKB = getInline(1,keyboard);
-
-        String msg ="Wallets:";
-
-        editMessage.setText(msg);
-        editMessage.setReplyMarkup(inlineKB);
-
-        try {
-            tbot.execute(editMessage);
-        } catch (TelegramApiException ex) {}
-
+        return false;
     }
 
 }

@@ -2,6 +2,7 @@ package info.bcdev.telegramwallet;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import info.bcdev.telegramwallet.ethereum.WalletsInstance;
 
 import java.io.File;
 import java.io.FileReader;
@@ -10,6 +11,8 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Settings {
 
@@ -26,6 +29,12 @@ public class Settings {
 
     private String nodeUrl;
     private String tokenAddress;
+
+    public static String SESSION_PAGE;
+    public static String ACTIVE_WALLET;
+    public static String SEND_STEP;
+
+    public static List<WalletsInstance> WALLET_INSTANCE_LIST = new ArrayList<>();
 
     public Boolean configRead(String configName) throws IOException {
 
