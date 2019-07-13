@@ -32,7 +32,7 @@ public class WalletList extends Keyboard {
     Settings settings = Main.settings;
     File[] listfiles;
 
-    public void GetAccounts(Message message) throws IOException, CipherException {
+    public void loadWalletList(Message message) throws IOException, CipherException {
         Tbot tbot = Tbot.INSTANCE;
 
         sendMessage.enableMarkdown(true);
@@ -51,11 +51,11 @@ public class WalletList extends Keyboard {
             for (int i = 0; i < listfiles.length; i++){
 
                 //////////////////////
-                if (listfiles[i].getName().endsWith(".json")) {
+                if (listfiles[i].getName().matches("UTC--.+\\.json")) {
                     Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[i].getName());
                     ///////////////////////////////////
                     String walletaddress = credentials.getAddress();
-                    walletsInstanceList.add(new WalletsInstance(walletaddress, credentials));
+                    walletsInstanceList.add(new WalletsInstance(walletaddress, credentials, listfiles[i]));
                 }
             }
         }
@@ -66,10 +66,9 @@ public class WalletList extends Keyboard {
         List<String> list = getWalletAdresses(walletsInstanceList);
 
         em = EmojiParser.parseToUnicode("\uD83D\uDCCB");
-        list.add(em+ " Add New Wallet");
+        list.add(em+ " Create Wallet");
 
-/*        em = EmojiParser.parseToUnicode("\uD83D\uDC48");
-        list.add(em+" Back");*/
+        list.add("Edit Gas");
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1,list);
 
@@ -106,8 +105,7 @@ public class WalletList extends Keyboard {
             KeyDir.mkdirs();
         } else {
                 try {
-                    String fileName = WalletUtils.generateNewWalletFile(settings.getWalletPassword(), KeyDir, false);
-
+                    WalletUtils.generateNewWalletFile(settings.getWalletPassword(), KeyDir, false);
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }

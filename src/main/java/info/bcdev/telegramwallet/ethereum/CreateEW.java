@@ -61,7 +61,7 @@ public class CreateEW {
         //System.out.println("PublicKey: " +credentials.getEcKeyPair().getPublicKey());
 
         String FileWallet = WalletUtils.generateWalletFile(passwordwallet, credentials.getEcKeyPair(), keydir, false);
-        //System.out.println("BIP44 FILE Wallet: "+FileWallet);
+        //System.out.println("BIP44 FILE loadWallet: "+FileWallet);
 
         result = new HashMap<>();
         result.put("seed", seedCode);

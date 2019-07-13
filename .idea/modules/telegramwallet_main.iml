@@ -9,8 +9,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../libs/web3j-lib.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Gradle: org.telegram:telegrambots:4.3.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.web3j:core:4.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.web3j:core:4.3.0" level="project" />
     <orderEntry type="library" name="Gradle: org.bitcoinj:bitcoinj-core:0.14.7" level="project" />
     <orderEntry type="library" name="Gradle: com.google.zxing:javase:3.3.3" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
@@ -28,9 +37,9 @@
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpmime:4.5.3" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.5.3" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
-    <orderEntry type="library" name="Gradle: org.web3j:abi:4.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.web3j:crypto:4.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.web3j:tuples:4.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.web3j:abi:4.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.web3j:crypto:4.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.web3j:tuples:4.3.0" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jnr:jnr-unixsocket:0.21" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:logging-interceptor:3.8.1" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.8.1" level="project" />
@@ -63,8 +72,8 @@
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.6" level="project" />
     <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
-    <orderEntry type="library" name="Gradle: org.web3j:rlp:4.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.web3j:utils:4.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.web3j:rlp:4.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.web3j:utils:4.3.0" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jnr:jnr-enxio:0.19" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jnr:jnr-posix:3.0.47" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jnr:jnr-ffi:2.1.9" level="project" />
@@ -80,7 +89,7 @@
     <orderEntry type="library" name="Gradle: org.glassfish.grizzly:grizzly-http:2.3.28" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b32" level="project" />
     <orderEntry type="library" name="Gradle: org.javassist:javassist:3.20.0-GA" level="project" />
-    <orderEntry type="library" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.54" level="project" />
+    <orderEntry type="library" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.60" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jnr:jffi:1.2.17" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jnr:jffi:native:1.2.17" level="project" />
     <orderEntry type="library" name="Gradle: org.ow2.asm:asm-commons:5.0.3" level="project" />

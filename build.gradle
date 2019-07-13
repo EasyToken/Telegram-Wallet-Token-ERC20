@@ -2,21 +2,47 @@ group 'info.bcdev'
 version '1.0'
 
 apply plugin: 'java'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "info.bcdev.telegramwallet.Main"
+    }
+
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+
+    from('libs/') {
+        include '*.jar'
+    }
+
+    exclude 'libs/*.jar'
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // https://mvnrepository.com/artifact/org.telegram/telegrambots
     compile group: 'org.telegram', name: 'telegrambots', version: '4.3.1'
 
     // https://mvnrepository.com/artifact/org.web3j/core
-    compile group: 'org.web3j', name: 'core', version: '4.1.1'
+    compile group: 'org.web3j', name: 'core', version: '4.3.0'
 
     // https://mvnrepository.com/artifact/org.bitcoinj/bitcoinj-core
     compile group: 'org.bitcoinj', name: 'bitcoinj-core', version: '0.14.7'

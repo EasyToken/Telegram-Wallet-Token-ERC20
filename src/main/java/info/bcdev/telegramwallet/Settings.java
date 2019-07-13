@@ -33,6 +33,10 @@ public class Settings {
     public static String SESSION_PAGE;
     public static String ACTIVE_WALLET;
     public static String SEND_STEP;
+    public static String DELETE_STEP;
+
+    public static String GAS_PRICE_VALUE = "3";
+    public static String GAS_LIMIT_VALUE = "45000";
 
     public static List<WalletsInstance> WALLET_INSTANCE_LIST = new ArrayList<>();
 

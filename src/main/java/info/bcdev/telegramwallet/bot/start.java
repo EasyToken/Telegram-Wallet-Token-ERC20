@@ -42,7 +42,7 @@ public class start extends Keyboard {
         keyboard.add(em+" Wallets");
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1, keyboard);
-        String msg ="Wallet for Ethereum Tokens";
+        String msg ="loadWallet for Ethereum Tokens";
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 
@@ -67,7 +67,7 @@ public class start extends Keyboard {
 
         InlineKeyboardMarkup inlineKB = getInline(1,keyboard);
 
-        String msg ="Wallet for Ethereum Tokens";
+        String msg ="loadWallet for Ethereum Tokens";
 
         editMessage.setText(msg);
         editMessage.setReplyMarkup(inlineKB);

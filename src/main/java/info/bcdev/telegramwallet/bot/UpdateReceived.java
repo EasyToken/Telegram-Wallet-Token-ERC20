@@ -1,6 +1,7 @@
 package info.bcdev.telegramwallet.bot;
 
 import info.bcdev.telegramwallet.Settings;
+import info.bcdev.telegramwallet.ethereum.Gas;
 import info.bcdev.telegramwallet.ethereum.Wallet;
 import info.bcdev.telegramwallet.ethereum.WalletList;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -13,6 +14,7 @@ public class UpdateReceived {
 
     private Wallet wallet = new Wallet();
     private WalletList walletlist = new WalletList();
+    private Gas gas = new Gas();
 
     public void Update(Update update) {
         start start = new start();
@@ -20,72 +22,47 @@ public class UpdateReceived {
 
         if (message != null && message.hasText()) {
 
-            if (Settings.SESSION_PAGE == null){
-                setSessionPage("wallets");
-                setActiveWallet("");
-                try {
-                    walletlist.GetAccounts(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (CipherException e) {
-                    e.printStackTrace();
-                }
-            }
+            if (Settings.SESSION_PAGE == null) loadWalletList(message);
 
             if (message.getText().equals("/start")) {
                 setSessionPage("start");
                 start.CmdStart(message);
-            /*} else if (message.getText().startsWith("/Send")) {
-                try {
-                    wallet.Send(message);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }*/
             } else if (message.getText().equals("\uD83D\uDCBC Wallets")) {
-                setSessionPage("wallets");
-                setActiveWallet("");
-                try {
-                    walletlist.GetAccounts(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (CipherException e) {
-                    e.printStackTrace();
-                }
-            } else if (message.getText().startsWith("\uD83D\uDCB0 0x")) {
-                setSessionPage("wallet");
-                try {
-                    wallet.Wallet(update);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (CipherException e) {
-                    e.printStackTrace();
-                }
-            } else if (message.getText().startsWith("\uD83D\uDCB3 SendToken")){
+                loadWalletList(message);
+            } else if (message.getText().matches("\uD83D\uDCB0 0x[a-z0-9]+")) {
+                String walletaddress = message.getText().split(" ")[1];
+                setActiveWallet(walletaddress);
+                loadWallet(message);
+            } else if (message.getText().equals("\uD83D\uDCB3 SendToken")){
                 wallet.EnterAddress(message);
-            } else if (message.getText().equals("\uD83D\uDCCB Add New Wallet")) {
-                if (walletlist.createWallet()){
-                    try {
-                        walletlist.GetAccounts(message);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (CipherException e) {
-                        e.printStackTrace();
-                    }
-                }
+            } else if (message.getText().equals("✅  Confirm Send")){
+                wallet.SendToken(message);
+            } else if (message.getText().equals("\uD83D\uDCCB Create Wallet")) {
+                createWallet(message);
             } else if (message.getText().equals("\uD83D\uDC48 Back")){
+                System.out.println(getSessionPage());
                 if (getSessionPage() != null) {
                     switch (getSessionPage()) {
                         case "wallets":
                             start.CmdStart(message);
                             break;
                         case "wallet":
-                            try {
-                                walletlist.GetAccounts(message);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (CipherException e) {
-                                e.printStackTrace();
-                            }
+                            loadWalletList(message);
+                            break;
+                        case "confirmsend":
+                            loadWallet(message);
+                            break;
+                        case "sending":
+                            loadWallet(message);
+                            break;
+                        case "delete":
+                            loadWallet(message);
+                            break;
+                        case "confirmdelete":
+                            loadWalletList(message);
+                            break;
+                        case "editgas":
+                            loadWalletList(message);
                             break;
                         default:
                             start.CmdStart(message);
@@ -94,19 +71,84 @@ public class UpdateReceived {
                 } else {
                     start.CmdStart(message);
                 }
-            } else {
-                if (getSendStep() != null) {
-                    switch (getSendStep()) {
-                        case "enterammount":
-                            Wallet.TRANSACTION_VALUE.put("addressto",message.getText());
-                            wallet.EnterAmmount(message);
-                            break;
-                        case "sending":
-                            Wallet.TRANSACTION_VALUE.put("ammount",message.getText());
-                            wallet.SendToken(message);
-                            break;
-                    }
+            } else if (message.getText().equals("❌ DeleteWallet")) {
+                setSessionPage("delete");
+                wallet.confirmDelete(message);
+            } else if (message.getText().equals("✅ Confirm Delete")) {
+                setSessionPage("confirmdelete");
+                switch (getDelStep()){
+                    case "confirm":
+                        wallet.Delete(message);
+                        break;
                 }
+            } else if (message.getText().equals("Edit Gas")) {
+                setSessionPage("editgas");
+                gas.gasEdit(message);
+            } else if (message.getText().equals("GasPrice Value")) {
+                setSessionPage("editgasprice");
+                gas.gasPriceEdit(message);
+            } else if (message.getText().equals("GasLimit Value")) {
+                setSessionPage("editgaslimit");
+                gas.gasLimitEdit(message);
+            } else {
+                switch (getSessionPage()) {
+                    case "wallet":
+                    if (getSendStep() != null || !getSendStep().equals("")) {
+                        switch (getSendStep()) {
+                            case "enterammount":
+                                Wallet.TRANSACTION_VALUE.put("addressto", message.getText());
+                                wallet.EnterAmmount(message);
+                                break;
+                            case "confirm":
+                                setSessionPage("confirmsend");
+                                Wallet.TRANSACTION_VALUE.put("ammount", message.getText());
+                                wallet.confirmSendToken(message);
+                                break;
+                        }
+                    }
+                    break;
+                    case "editgasprice":
+                        gas.setGasPrice(message.getText());
+                        gas.gasEdit(message);
+                        break;
+                    case "editgaslimit":
+                        gas.setGasLimit(message.getText());
+                        gas.gasEdit(message);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void loadWalletList(Message message){
+        setSessionPage("wallets");
+        setActiveWallet("");
+        try {
+            walletlist.loadWalletList(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CipherException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadWallet(Message message){
+        setSessionPage("wallet");
+        try {
+            wallet.loadWallet(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createWallet(Message message){
+        if (walletlist.createWallet()){
+            try {
+                walletlist.loadWalletList(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CipherException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -125,6 +167,10 @@ public class UpdateReceived {
 
     private String getSendStep(){
         return Settings.SEND_STEP;
+    }
+
+    private String getDelStep(){
+        return Settings.DELETE_STEP;
     }
 
 }
