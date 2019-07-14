@@ -42,6 +42,8 @@ public class CreateEW {
 
     String seedCode = MnemonicUtils.generateMnemonic(initialEntropy);
 
+        System.out.println(seedCode);
+
 // BitcoinJ
     DeterministicSeed seed = null;
     Map<String, String> result = null;

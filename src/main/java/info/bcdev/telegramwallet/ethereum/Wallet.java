@@ -188,7 +188,7 @@ public class Wallet extends Keyboard {
         String em;
 
         em = EmojiParser.parseToUnicode("✅");
-        list.add(em + "  Confirm Send");
+        list.add(em + " Confirm Send");
 
         em = EmojiParser.parseToUnicode("\uD83D\uDC48");
         list.add(em+" Back");
@@ -250,7 +250,7 @@ public class Wallet extends Keyboard {
         String em;
 
         em = EmojiParser.parseToUnicode("✅");
-        list.add(em + "  Confirm Delete");
+        list.add(em + " Confirm Delete");
 
         em = EmojiParser.parseToUnicode("\uD83D\uDC48");
         list.add(em+" Back");

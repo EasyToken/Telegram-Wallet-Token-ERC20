@@ -35,7 +35,7 @@ public class UpdateReceived {
                 loadWallet(message);
             } else if (message.getText().equals("\uD83D\uDCB3 SendToken")){
                 wallet.EnterAddress(message);
-            } else if (message.getText().equals("✅  Confirm Send")){
+            } else if (message.getText().equals("✅ Confirm Send")){
                 wallet.SendToken(message);
             } else if (message.getText().equals("\uD83D\uDCCB Create Wallet")) {
                 createWallet(message);
@@ -76,6 +76,7 @@ public class UpdateReceived {
                 wallet.confirmDelete(message);
             } else if (message.getText().equals("✅ Confirm Delete")) {
                 setSessionPage("confirmdelete");
+                System.out.println("123");
                 switch (getDelStep()){
                     case "confirm":
                         wallet.Delete(message);
