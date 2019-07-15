@@ -34,8 +34,6 @@ public class start extends Keyboard {
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
-        System.out.println(message.getChat());
-
         List<String> keyboard = new ArrayList<>();
 
         String em = EmojiParser.parseToUnicode("\uD83D\uDCBC");

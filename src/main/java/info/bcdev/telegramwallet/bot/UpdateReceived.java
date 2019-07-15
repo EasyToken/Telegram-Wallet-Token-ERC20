@@ -40,7 +40,6 @@ public class UpdateReceived {
             } else if (message.getText().equals("\uD83D\uDCCB Create Wallet")) {
                 createWallet(message);
             } else if (message.getText().equals("\uD83D\uDC48 Back")){
-                System.out.println(getSessionPage());
                 if (getSessionPage() != null) {
                     switch (getSessionPage()) {
                         case "wallets":
@@ -76,7 +75,6 @@ public class UpdateReceived {
                 wallet.confirmDelete(message);
             } else if (message.getText().equals("✅ Confirm Delete")) {
                 setSessionPage("confirmdelete");
-                System.out.println("123");
                 switch (getDelStep()){
                     case "confirm":
                         wallet.Delete(message);
