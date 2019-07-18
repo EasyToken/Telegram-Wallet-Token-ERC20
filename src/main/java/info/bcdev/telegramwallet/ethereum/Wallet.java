@@ -8,6 +8,7 @@ import info.bcdev.telegramwallet.bot.Keyboard;
 import info.bcdev.telegramwallet.bot.Tbot;
 import info.bcdev.telegramwallet.erc20.TokenERC20;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -37,7 +38,9 @@ public class Wallet extends Keyboard {
     public void loadWallet(Message message) throws IOException {
         tbot = Tbot.INSTANCE;
         sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(message.getChatId().toString());
+        String chatID = message.getChatId().toString();
+        sendMessage.setChatId(chatID);
+        SendPhoto sendPhoto = new SendPhoto().setChatId(chatID);
 
         String walletaddress = Settings.ACTIVE_WALLET;
 
@@ -56,26 +59,14 @@ public class Wallet extends Keyboard {
         BigDecimal balance_eth = new Balance(web3).getEtherBalance(walletaddress);
 
         try {
-           // String walletaddress = credentials.getAddress();
+
             String name = token.name().send();
 
             String symbol = token.symbol().send();
 
-            String address = token.getContractAddress();
-
-            BigInteger totalSupply = token.totalSupply().send();
-
             BigInteger balance = token.balanceOf(walletaddress).send();
 
             ///////////////////////////////////////////
-
-            /*Map<String, String> keyboard = new HashMap<>();
-            keyboard.put("Back","/Wallets");
-
-            InlineKeyboardMarkup inlineKB = getInline(1,keyboard);*/
-
-
-            //File file = QRCode.from(walletaddress).to(ImageType.PNG).withSize(250, 250).file();
 
             List<String> list = new ArrayList<>();
             String em;
@@ -95,12 +86,11 @@ public class Wallet extends Keyboard {
                     + "\n Name Token: "+name+" "
                     + "\n Token Balance: "+balance+" "+symbol;
 
-            /*editMessage.setText(msg);
-            editMessage.setReplyMarkup(inlineKB);*/
+            sendPhoto.setPhoto(getFileQRCode(walletaddress));
 
             sendMessage.setText(msg);
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
-
+            tbot.execute(sendPhoto);
             tbot.execute(sendMessage);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -112,6 +102,15 @@ public class Wallet extends Keyboard {
         for (WalletsInstance walletsInstance : Settings.WALLET_INSTANCE_LIST){
             if(walletsInstance.checkWallet(walletaddress)){
                 return walletsInstance.getCredentials();
+            }
+        }
+        return null;
+    }
+
+    private File getFileQRCode(String walletaddress){
+        for (WalletsInstance walletsInstance : Settings.WALLET_INSTANCE_LIST){
+            if(walletsInstance.checkWallet(walletaddress)){
+                return walletsInstance.getFileqrcode();
             }
         }
         return null;
@@ -278,6 +277,8 @@ public class Wallet extends Keyboard {
             if (walletsInstance.checkWallet(Settings.ACTIVE_WALLET)) {
                 File wallet = walletsInstance.getFilewallet();
                 result = wallet.delete();
+                File qrcode = walletsInstance.getFileqrcode();
+                qrcode.delete();
             }
         }
 

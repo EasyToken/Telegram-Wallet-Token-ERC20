@@ -7,10 +7,6 @@ import info.bcdev.telegramwallet.ethereum.WalletsInstance;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +25,8 @@ public class Settings {
 
     private String nodeUrl;
     private String tokenAddress;
+
+    private String qrcodeDir;
 
     public static String SESSION_PAGE;
     public static String ACTIVE_WALLET;
@@ -56,13 +54,11 @@ public class Settings {
 
             fileReader.close();
             return true;
-        } else {
-            System.out.println("Error read file config");
-            return false;
         }
+            return false;
     }
 
-    private void setParamsSettings(JsonObject settings) throws IOException {
+    private void setParamsSettings(JsonObject settings) {
 
         if (!settings.isJsonNull() && settings.isJsonObject()){
             JsonObject bot = settings.getAsJsonObject("bot");
@@ -79,20 +75,15 @@ public class Settings {
             proxyType = proxy.get("type").getAsString();
 
             walletDir = wallet.get("dir").getAsString();
-            validDirWallet();
+
+            qrcodeDir = settings.get("qrcodedir").getAsString();
+
             walletPassword = wallet.get("password").getAsString();
 
             nodeUrl = node.get("url").getAsString();
             tokenAddress = node.get("tokenaddress").getAsString();
         }
 
-    }
-
-    private void validDirWallet() throws IOException {
-        Path dirPath = Paths.get(walletDir);
-        if (!Files.isReadable(dirPath)){
-            Files.createDirectories(dirPath);
-        }
     }
 
     public Boolean getProxyActive() {
@@ -121,6 +112,10 @@ public class Settings {
 
     public String getWalletDir() {
         return walletDir;
+    }
+
+    public String getQRCodeDir() {
+        return qrcodeDir;
     }
 
     public String getWalletPassword() {

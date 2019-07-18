@@ -5,26 +5,19 @@ import info.bcdev.telegramwallet.Main;
 import info.bcdev.telegramwallet.Settings;
 import info.bcdev.telegramwallet.bot.Keyboard;
 import info.bcdev.telegramwallet.bot.Tbot;
+import info.bcdev.telegramwallet.qr.QRCode;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.http.HttpService;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WalletList extends Keyboard {
 
@@ -34,6 +27,8 @@ public class WalletList extends Keyboard {
 
     public void loadWalletList(Message message) throws IOException, CipherException {
         Tbot tbot = Tbot.INSTANCE;
+
+        QRCode qrCode = new QRCode();
 
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
@@ -55,7 +50,8 @@ public class WalletList extends Keyboard {
                     Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[i].getName());
                     ///////////////////////////////////
                     String walletaddress = credentials.getAddress();
-                    walletsInstanceList.add(new WalletsInstance(walletaddress, credentials, listfiles[i]));
+                    File fileqrcode = qrCode.qrGen(walletaddress,settings.getQRCodeDir()).toFile();
+                    walletsInstanceList.add(new WalletsInstance(walletaddress, credentials, listfiles[i], fileqrcode));
                 }
             }
         }

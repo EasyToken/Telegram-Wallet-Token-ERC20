@@ -23,8 +23,6 @@ import java.util.Map;
 
 public class CreateEW {
 
-    private String filename;
-
     private static final SecureRandom secureRandom = new SecureRandom();
 
     private Settings settings = Main.settings;

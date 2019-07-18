@@ -10,6 +10,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
 
@@ -18,8 +21,10 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            settings.configRead("config.json");
-            botInstance();
+            if (settings.configRead("config.json")) {
+
+                botInstance();
+            }
         } catch (JsonSyntaxException e){
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -57,5 +62,12 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+/*    private void validDirWallet() throws IOException {
+        Path dirPath = Paths.get(walletDir);
+        if (!Files.isReadable(dirPath)){
+            Files.createDirectories(dirPath);
+        }
+    }*/
 
 }

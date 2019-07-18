@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="web3j-lib">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/web3j-lib.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

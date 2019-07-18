@@ -21,9 +21,9 @@
     <orderEntry type="library" name="Gradle: org.telegram:telegrambots:4.3.1" level="project" />
     <orderEntry type="library" name="Gradle: org.web3j:core:4.3.0" level="project" />
     <orderEntry type="library" name="Gradle: org.bitcoinj:bitcoinj-core:0.14.7" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.zxing:javase:3.3.3" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="library" name="Gradle: com.vdurmont:emoji-java:4.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.zxing:javase:3.4.0" level="project" />
     <orderEntry type="library" name="Gradle: org.telegram:telegrambots-meta:4.3.1" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.9" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.9" level="project" />
@@ -54,7 +54,7 @@
     <orderEntry type="library" name="Gradle: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.lambdaworks:scrypt:1.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp:okhttp:2.7.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.zxing:core:3.3.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.zxing:core:3.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.beust:jcommander:1.72" level="project" />
     <orderEntry type="library" name="Gradle: com.github.jai-imageio:jai-imageio-core:1.4.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.inject:guice:4.2.2" level="project" />
