@@ -1,7 +1,7 @@
 package info.bcdev.telegramwallet.ethereum;
 
-import info.bcdev.telegramwallet.Main;
 import info.bcdev.telegramwallet.Settings;
+import info.bcdev.telegramwallet.Main;
 import org.bitcoinj.crypto.ChildNumber;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bitcoinj.crypto.HDUtils;
@@ -25,57 +25,93 @@ public class CreateEW {
 
     private static final SecureRandom secureRandom = new SecureRandom();
 
-    private Settings settings = Main.settings;
+     Settings settings;
+    private String dir;
+    private String passwordwallet;
 
-    private String dir = settings.getWalletDir();
-    private String passwordwallet = settings.getWalletPassword();
-
+    public CreateEW(Settings settings) {
+        this.settings = settings;
+        dir = settings.getWalletDir();
+        passwordwallet = settings.getWalletPassword();
+    }
 
     public Map<String, String> CreateEW() {
 
-    File keydir = new File(dir);
+        File keydir = new File(dir);
 
-    byte[] initialEntropy = new byte[16];
-    secureRandom.nextBytes(initialEntropy);
+        byte[] initialEntropy = new byte[16];
 
-    String seedCode = MnemonicUtils.generateMnemonic(initialEntropy);
+        secureRandom.nextBytes(initialEntropy);
+
+        String seedCode = MnemonicUtils.generateMnemonic(initialEntropy);
 
         System.out.println(seedCode);
 
-// BitcoinJ
-    DeterministicSeed seed = null;
-    Map<String, String> result = null;
-    try {
-        seed = new DeterministicSeed(seedCode, null, passwordwallet, 1409478661L);
+        Map<String, String> result = null;
 
-        DeterministicKeyChain chain = DeterministicKeyChain.builder().seed(seed).build();
-        List<ChildNumber> keyPath = HDUtils.parsePath("M/44H/60H/0H/0/0");
-        DeterministicKey key = chain.getKeyByPath(keyPath, true);
-        BigInteger privKey = key.getPrivKey();
+        Credentials credentials = Generate(seedCode);
 
-// Web3j
-        Credentials credentials = Credentials.create(privKey.toString(16));
-        //System.out.println("seedCode: " + seedCode);
-        //System.out.println("Generate BitcoinJ address: " +credentials.getAddress());
-        //System.out.println("PrivateKey: " +credentials.getEcKeyPair().getPrivateKey());
-        //System.out.println("PublicKey: " +credentials.getEcKeyPair().getPublicKey());
+        if (credentials != null) {
+            try {
+                String FileWallet = WalletUtils.generateWalletFile(passwordwallet, credentials.getEcKeyPair(), keydir, false);
+                //System.out.println("BIP44 FILE loadWallet: "+FileWallet);
 
-        String FileWallet = WalletUtils.generateWalletFile(passwordwallet, credentials.getEcKeyPair(), keydir, false);
-        //System.out.println("BIP44 FILE loadWallet: "+FileWallet);
+                result = new HashMap<>();
+                result.put("seed", seedCode);
+                result.put("address", credentials.getAddress());
+                result.put("filewallet", FileWallet);
 
-        result = new HashMap<>();
-        result.put("seed", seedCode);
-        result.put("address", credentials.getAddress());
-        result.put("filewallet", FileWallet);
-
-    } catch (UnreadableWalletException e) {
-        e.printStackTrace();
-    } catch (IOException e) {
-        e.printStackTrace();
-    } catch (CipherException e) {
-        e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CipherException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+        return null;
     }
-    return result;
-}
 
-}
+    public Map<String, String> CreateEW(String seedCode) {
+
+        File keydir = new File(dir);
+
+        System.out.println(seedCode);
+
+        Map<String, String> result = new HashMap<>();
+
+        Credentials credentials = Generate(seedCode);
+
+        if (credentials != null) {
+            try {
+                String FileWallet = WalletUtils.generateWalletFile(passwordwallet, credentials.getEcKeyPair(), keydir, false);
+                result.put("seed", seedCode);
+                result.put("address", credentials.getAddress());
+                result.put("filewallet", FileWallet);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CipherException e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+        return null;
+    }
+
+    private Credentials Generate(String seedCode) {
+        Credentials credentials = null;
+        try {
+            DeterministicSeed seed = new DeterministicSeed(seedCode, null, passwordwallet, 1409478661L);
+
+            DeterministicKeyChain chain = DeterministicKeyChain.builder().seed(seed).build();
+            List<ChildNumber> keyPath = HDUtils.parsePath("M/44H/60H/0H/0/0");
+            DeterministicKey key = chain.getKeyByPath(keyPath, true);
+            BigInteger privKey = key.getPrivKey();
+
+            credentials = Credentials.create(privKey.toString(16));
+        } catch (UnreadableWalletException e) {
+            e.printStackTrace();
+        }
+        return credentials;
+    }
+
+    }

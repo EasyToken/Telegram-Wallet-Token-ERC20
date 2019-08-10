@@ -1,7 +1,9 @@
 package info.bcdev.telegramwallet.ethereum.pages;
 
 import com.vdurmont.emoji.EmojiParser;
-import info.bcdev.telegramwallet.Config;
+import info.bcdev.telegramwallet.Settings;
+import info.bcdev.telegramwallet.bot.BotInstance;
+import info.bcdev.telegramwallet.bot.KeyBoards;
 import info.bcdev.telegramwallet.bot.Keyboard;
 import info.bcdev.telegramwallet.bot.Tbot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,14 +13,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gas extends Keyboard {
+public class PageGas implements KeyBoards, BotInstance {
 
     private SendMessage sendMessage = new SendMessage();
-    private Tbot tbot;
 
     public void gasEdit(Message message){
 
-        tbot = Tbot.INSTANCE;
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
@@ -31,8 +31,8 @@ public class Gas extends Keyboard {
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReply(2,list);
 
-        String msg = "GasPrice = "+ Config.GAS_PRICE_VALUE + " GWEI" +
-                "\nGasLimit = " + Config.GAS_LIMIT_VALUE + " WEI";
+        String msg = "GasPrice = "+ Settings.GAS_PRICE_VALUE + " GWEI" +
+                "\nGasLimit = " + Settings.GAS_LIMIT_VALUE + " WEI";
 
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -44,7 +44,6 @@ public class Gas extends Keyboard {
     }
 
     public void gasPriceEdit(Message message){
-        tbot = Tbot.INSTANCE;
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
@@ -67,7 +66,6 @@ public class Gas extends Keyboard {
     }
 
     public void gasLimitEdit(Message message){
-        tbot = Tbot.INSTANCE;
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
@@ -90,10 +88,10 @@ public class Gas extends Keyboard {
     }
 
     public void setGasPrice(String g){
-        Config.GAS_PRICE_VALUE = g;
+        Settings.GAS_PRICE_VALUE = g;
     }
 
     public void setGasLimit(String g){
-        Config.GAS_LIMIT_VALUE = g;
+        Settings.GAS_LIMIT_VALUE = g;
     }
 }

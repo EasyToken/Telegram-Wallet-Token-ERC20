@@ -1,74 +1,55 @@
 package info.bcdev.telegramwallet.ethereum;
 
 import com.vdurmont.emoji.EmojiParser;
-import info.bcdev.telegramwallet.Main;
-import info.bcdev.telegramwallet.Settings;
-import info.bcdev.telegramwallet.bot.Keyboard;
-import info.bcdev.telegramwallet.bot.Tbot;
-import info.bcdev.telegramwallet.qr.QRCode;
+import info.bcdev.telegramwallet.bot.BotInstance;
+import info.bcdev.telegramwallet.bot.KeyBoards;
+import info.bcdev.telegramwallet.bot.LoadWalletList;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.web3j.crypto.CipherException;
-import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WalletList extends Keyboard {
+import static info.bcdev.telegramwallet.bot.session.Session.*;
 
-    SendMessage sendMessage = new SendMessage();
-    Settings settings = Main.settings;
-    File[] listfiles;
+public class WalletList implements KeyBoards, BotInstance {
 
-    public void loadWalletList(Message message) throws IOException, CipherException {
-        Tbot tbot = Tbot.INSTANCE;
+    private SendMessage sendMessage = new SendMessage();
+    private Long chatID;
 
-        QRCode qrCode = new QRCode();
+    public void setChatID(Long chatID) {
+        this.chatID = chatID;
+    }
+
+    public void loadWalletList() {
 
         sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(message.getChatId().toString());
+        sendMessage.setChatId(chatID);
 
-        List<WalletsInstance> walletsInstanceList = new ArrayList<>();
+        WALLET_INSTANCE_LIST = new LoadWalletList().getWalletList();
 
-        //////////////////////
-        File KeyDir = new File(settings.getWalletDir());
-        if (!KeyDir.exists()) {
-            KeyDir.mkdirs();
+        String msg;
+        if (WALLET_INSTANCE_LIST.isEmpty()) {
+            msg ="Your wallet list, is Empty";
         } else {
-
-            listfiles = loadFiles(KeyDir);
-
-            for (int i = 0; i < listfiles.length; i++){
-
-                //////////////////////
-                if (listfiles[i].getName().matches("UTC--.+\\.json")) {
-                    Credentials credentials = WalletUtils.loadCredentials(settings.getWalletPassword(), settings.getWalletDir() + "" + listfiles[i].getName());
-                    ///////////////////////////////////
-                    String walletaddress = credentials.getAddress();
-                    File fileqrcode = qrCode.qrGen(walletaddress,settings.getQRCodeDir()).toFile();
-                    walletsInstanceList.add(new WalletsInstance(walletaddress, credentials, listfiles[i], fileqrcode));
-                }
-            }
+            msg ="Your wallet list, is Loaded";
         }
-        Settings.WALLET_INSTANCE_LIST = walletsInstanceList;
 
+        List<String> list = getWalletAdresses(WALLET_INSTANCE_LIST);
         String em;
-
-        List<String> list = getWalletAdresses(walletsInstanceList);
-
         em = EmojiParser.parseToUnicode("\uD83D\uDCCB");
         list.add(em+ " Create Wallet");
-
-        list.add("Edit Gas");
+        em = EmojiParser.parseToUnicode("\uD83D\uDD17");
+        list.add(em + " RecoveryWallet");
+        em = EmojiParser.parseToUnicode("⚙");
+        list.add(em+ " PageSettings");
+        em = EmojiParser.parseToUnicode("\uD83D\uDC48");
+        list.add(em+" Back");
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1,list);
-
-        String msg ="Your wallet list";
 
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -91,17 +72,13 @@ public class WalletList extends Keyboard {
         return addresslist;
     }
 
-    private File[] loadFiles(File KeyDir){
-        return KeyDir.listFiles();
-    }
-
     public Boolean createWallet(){
-        File KeyDir = new File(settings.getWalletDir());
+        File KeyDir = new File(SETTINGS.getWalletDir());
         if (!KeyDir.exists()) {
             KeyDir.mkdirs();
         } else {
                 try {
-                    WalletUtils.generateNewWalletFile(settings.getWalletPassword(), KeyDir, false);
+                    WalletUtils.generateNewWalletFile(SETTINGS.getWalletPassword(), KeyDir, false);
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }

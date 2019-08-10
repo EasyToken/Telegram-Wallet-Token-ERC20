@@ -1,8 +1,12 @@
 package info.bcdev.telegramwallet;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import info.bcdev.telegramwallet.bot.BotAccess;
+import info.bcdev.telegramwallet.bot.session.Session;
 import info.bcdev.telegramwallet.ethereum.WalletsInstance;
+import org.glassfish.jersey.jaxb.internal.SecureSaxParserFactory;
 
 import java.io.File;
 import java.io.FileReader;
@@ -10,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Config {
+public class Settings {
 
     private String botUserName;
     private String botToken;
@@ -19,24 +23,24 @@ public class Config {
     private String proxyAddress;
     private int proxyPort;
     private String proxyType;
+    private String proxyUser;
+    private String proxyPass;
+    private Boolean proxyAuthActive;
 
     private String walletDir;
     private String walletPassword;
 
     private String nodeUrl;
+
+    private Boolean tokenactive;
     private String tokenAddress;
 
-    private String qrcodeDir;
+    private String qrCodeDir;
 
-    public static String SESSION_PAGE;
-    public static String ACTIVE_WALLET;
-    public static String SEND_STEP;
-    public static String DELETE_STEP;
+    private String apiTokenEtherScan;
 
-    public static String GAS_PRICE_VALUE = "3";
-    public static String GAS_LIMIT_VALUE = "45000";
-
-    public static List<WalletsInstance> WALLET_INSTANCE_LIST = new ArrayList<>();
+    public static String GAS_PRICE_VALUE = "4";
+    public static String GAS_LIMIT_VALUE = "85000";
 
     public Boolean configRead(String configName) throws IOException {
 
@@ -48,7 +52,7 @@ public class Config {
 
             JsonParser jsonParser = new JsonParser();
             JsonObject config = jsonParser.parse(fileReader).getAsJsonObject();
-            JsonObject settings = config.get("configuration").getAsJsonObject();
+            JsonObject settings = config.get("settings").getAsJsonObject();
 
             setParamsSettings(settings);
 
@@ -65,6 +69,8 @@ public class Config {
             JsonObject proxy = settings.getAsJsonObject("proxy");
             JsonObject wallet = settings.getAsJsonObject("wallet");
             JsonObject node = settings.getAsJsonObject("node");
+            JsonObject etherscan = settings.getAsJsonObject("etherscan");
+            JsonArray usersID = bot.getAsJsonArray("usersid");
 
             botUserName = bot.get("username").getAsString();
             botToken = bot.get("token").getAsString();
@@ -73,15 +79,26 @@ public class Config {
             proxyAddress = proxy.get("address").getAsString();
             proxyPort = proxy.get("port").getAsInt();
             proxyType = proxy.get("type").getAsString();
+            JsonObject proxyAuth = proxy.getAsJsonObject("proxyauth");
+            proxyAuthActive = proxyAuth.get("active").getAsBoolean();
+            proxyUser = proxyAuth.get("proxyuser").getAsString();
+            proxyPass = proxyAuth.get("proxypas").getAsString();
 
             walletDir = wallet.get("dir").getAsString();
 
-            qrcodeDir = settings.get("qrcodedir").getAsString();
+            qrCodeDir = settings.get("qrcodedir").getAsString();
 
             walletPassword = wallet.get("password").getAsString();
 
             nodeUrl = node.get("url").getAsString();
-            tokenAddress = node.get("tokenaddress").getAsString();
+
+            JsonObject smartcontracterc20 = node.getAsJsonObject("smartcontracterc20");
+            tokenactive = smartcontracterc20.get("active").getAsBoolean();
+            tokenAddress = smartcontracterc20.get("tokenaddress").getAsString();
+
+            apiTokenEtherScan = etherscan.get("apikeytoken").getAsString();
+
+            Session.BOT_ACCESS = new BotAccess(usersID);
         }
 
     }
@@ -102,6 +119,18 @@ public class Config {
         return proxyType;
     }
 
+    public String getProxyUser() {
+        return proxyUser;
+    }
+
+    public String getProxyPass() {
+        return proxyPass;
+    }
+
+    public Boolean getProxyAuthActive() {
+        return proxyAuthActive;
+    }
+
     public String getBotUserName() {
         return botUserName;
     }
@@ -115,7 +144,7 @@ public class Config {
     }
 
     public String getQRCodeDir() {
-        return qrcodeDir;
+        return qrCodeDir;
     }
 
     public String getWalletPassword() {
@@ -126,7 +155,15 @@ public class Config {
         return nodeUrl;
     }
 
+    public Boolean getTokenActive() {
+        return tokenactive;
+    }
+
     public String getTokenAddress(){
         return tokenAddress;
+    }
+
+    public String getApiTokenEtherScan() {
+        return apiTokenEtherScan;
     }
 }

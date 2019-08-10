@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Keyboard {
+public interface KeyBoards {
 
-/*    public InlineKeyboardMarkup getInline(Integer rows, Map<String, String> m) {
+    default InlineKeyboardMarkup getInline(Integer rows, Map<String, String> m) {
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
@@ -33,8 +33,7 @@ public class Keyboard {
         return markup;
     }
 
-
-    public ReplyKeyboardMarkup getReply(Integer rows, List<String> l) {
+    default ReplyKeyboardMarkup getReply(Integer rows, List<String> l) {
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         markup.setResizeKeyboard(Boolean.TRUE);
 
@@ -56,6 +55,5 @@ public class Keyboard {
         keyboardRows.add(row);
         markup.setKeyboard(keyboardRows);
         return markup;
-    }*/
-
+    }
 }

@@ -5,43 +5,36 @@ import info.bcdev.telegramwallet.Main;
 import info.bcdev.telegramwallet.Settings;
 import info.bcdev.telegramwallet.bot.BotInstance;
 import info.bcdev.telegramwallet.bot.KeyBoards;
-import info.bcdev.telegramwallet.bot.Keyboard;
-import info.bcdev.telegramwallet.bot.Tbot;
 import info.bcdev.telegramwallet.bot.session.Session;
 import info.bcdev.telegramwallet.ethereum.CreateEW;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import javax.activation.MailcapCommandMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static info.bcdev.telegramwallet.bot.session.Session.SETTINGS;
 
-public class PageCreateWallet implements KeyBoards, BotInstance {
+public class PageRecovery implements KeyBoards, BotInstance {
 
     private SendMessage sendMessage = new SendMessage();
 
-    public void confirmCreate(Message message) {
+    public void enterSeed(Message message){
 
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
 
         List<String> list = new ArrayList<>();
         String em;
-
-        em = EmojiParser.parseToUnicode("✅");
-        list.add(em + " Confirm Create");
-
         em = EmojiParser.parseToUnicode("\uD83D\uDC48");
         list.add(em+" Back");
-        ReplyKeyboardMarkup replyKeyboardMarkup = getReply(2,list);
 
-        String msg ="You confirm the creation of the wallet?";
+        ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1,list);
+
+        String msg = "Enter your SEED PHRASE for restore wallet:";
 
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -52,40 +45,38 @@ public class PageCreateWallet implements KeyBoards, BotInstance {
         }
     }
 
-    public void Create(Message message){
-        CreateEW createew = new CreateEW(SETTINGS);
+    public void recoveryWallet(Long chatID, String seedCode){
 
         sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(message.getChatId().toString());
-
-        Map<String,String> result = createew.CreateEW();
+        sendMessage.setChatId(chatID);
 
         List<String> list = new ArrayList<>();
-        String msg;
-        String msgSeed = "***"+ result.get("seed")+"***";
-        if (!result.isEmpty()){
-           msg = "Your wallet is Generate with:\n" +
-                   "Address: "+ result.get("address")+"\n"+
-                    "SeedCode:";
-        } else {
-            msg = "Wallet is not generate";
-        }
-
-        String em = EmojiParser.parseToUnicode("\uD83D\uDC48");
+        String em;
+        em = EmojiParser.parseToUnicode("\uD83D\uDC48");
         list.add(em+" Back");
 
-        ReplyKeyboardMarkup replyKeyboardMarkup = getReply(2,list);
+        ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1,list);
+
+        String msg = "";
+        System.out.println(seedCode);
+        if (seedCode.split(" ").length == 12) {
+            Map<String, String> result = new CreateEW(SETTINGS).CreateEW(seedCode);
+            if (result != null){
+                msg = "Wallet with addrees "+ result.get("address") + " recovery Success. \n" +
+                        "filenme wallet: " + result.get("filewallet");
+            }
+        } else {
+            msg = "Recovery Wallet Fail";
+        }
 
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
         try{
             tbot.execute(sendMessage);
-
-            sendMessage.setText(msgSeed);
-            tbot.execute(sendMessage);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
     }
 
 }

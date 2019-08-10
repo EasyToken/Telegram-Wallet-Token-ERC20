@@ -1,6 +1,7 @@
 package info.bcdev.telegramwallet;
 
 import com.google.gson.JsonSyntaxException;
+import info.bcdev.telegramwallet.bot.BotInstance;
 import info.bcdev.telegramwallet.bot.Tbot;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
@@ -10,19 +11,21 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 
-public class Main {
+import static info.bcdev.telegramwallet.bot.session.Session.BOT_INSTANCE;
+import static info.bcdev.telegramwallet.bot.session.Session.SETTINGS;
 
-    public static Settings settings = new Settings();
+public class Main implements BotInstance {
+
+    private static Settings settings = new Settings();
 
     public static void main(String[] args) {
 
         try {
             if (settings.configRead("config.json")) {
-
+                SETTINGS = settings;
                 botInstance();
             }
         } catch (JsonSyntaxException e){
@@ -36,6 +39,15 @@ public class Main {
 
     private static void botInstance() {
 
+        if (settings.getProxyAuthActive()) {
+            // Create the Authenticator that will return auth's parameters for proxy authentication
+            Authenticator.setDefault(new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(settings.getProxyUser(), settings.getProxyPass().toCharArray());
+                }
+            });
+        }
         ApiContextInitializer.init();
 
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
@@ -53,7 +65,7 @@ public class Main {
             }
         }
 
-        Tbot tbot = new Tbot(botOptions);
+        BOT_INSTANCE = new Tbot(botOptions);
 
         try {
 
@@ -62,12 +74,5 @@ public class Main {
             e.printStackTrace();
         }
     }
-
-/*    private void validDirWallet() throws IOException {
-        Path dirPath = Paths.get(walletDir);
-        if (!Files.isReadable(dirPath)){
-            Files.createDirectories(dirPath);
-        }
-    }*/
 
 }
