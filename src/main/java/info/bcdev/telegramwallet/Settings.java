@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Settings {
+public class Config {
 
     private String botUserName;
     private String botToken;
@@ -48,7 +48,7 @@ public class Settings {
 
             JsonParser jsonParser = new JsonParser();
             JsonObject config = jsonParser.parse(fileReader).getAsJsonObject();
-            JsonObject settings = config.get("settings").getAsJsonObject();
+            JsonObject settings = config.get("configuration").getAsJsonObject();
 
             setParamsSettings(settings);
 

@@ -14,33 +14,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class start extends Keyboard {
+public class start implements KeyBoards {
 
     SendMessage sendMessage = new SendMessage();
 
     Tbot tbot = Tbot.INSTANCE;
 
-    @Override
-    public InlineKeyboardMarkup getInline(Integer rows, Map<String, String> m) {
-        return super.getInline(rows, m);
-    }
-
-    @Override
-    public ReplyKeyboardMarkup getReply(Integer rows, List<String> l) {
-        return super.getReply(rows, l);
-    }
-
     public void CmdStart (Message message)  {
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(message.getChatId().toString());
+
+        System.out.println(message);
 
         List<String> keyboard = new ArrayList<>();
 
         String em = EmojiParser.parseToUnicode("\uD83D\uDCBC");
         keyboard.add(em+" Wallets");
+        em = EmojiParser.parseToUnicode("\uD83D\uDECE");
+        keyboard.add(em+" About");
+        em = EmojiParser.parseToUnicode("\uD83D\uDCB8");
+        keyboard.add(em+" Thanks");
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReply(1, keyboard);
-        String msg ="loadWallet for Ethereum Tokens";
+        String msg ="This Wallet";
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
 

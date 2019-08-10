@@ -1,8 +1,7 @@
-package info.bcdev.telegramwallet.ethereum;
+package info.bcdev.telegramwallet.ethereum.pages;
 
 import com.vdurmont.emoji.EmojiParser;
-import info.bcdev.telegramwallet.Main;
-import info.bcdev.telegramwallet.Settings;
+import info.bcdev.telegramwallet.Config;
 import info.bcdev.telegramwallet.bot.Keyboard;
 import info.bcdev.telegramwallet.bot.Tbot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,7 +14,6 @@ import java.util.List;
 public class Gas extends Keyboard {
 
     private SendMessage sendMessage = new SendMessage();
-    private Settings settings = Main.settings;
     private Tbot tbot;
 
     public void gasEdit(Message message){
@@ -33,8 +31,8 @@ public class Gas extends Keyboard {
 
         ReplyKeyboardMarkup replyKeyboardMarkup = getReply(2,list);
 
-        String msg = "GasPrice = "+ Settings.GAS_PRICE_VALUE + " GWEI" +
-                "\nGasLimit = " + Settings.GAS_LIMIT_VALUE + " WEI";
+        String msg = "GasPrice = "+ Config.GAS_PRICE_VALUE + " GWEI" +
+                "\nGasLimit = " + Config.GAS_LIMIT_VALUE + " WEI";
 
         sendMessage.setText(msg);
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -92,10 +90,10 @@ public class Gas extends Keyboard {
     }
 
     public void setGasPrice(String g){
-        Settings.GAS_PRICE_VALUE = g;
+        Config.GAS_PRICE_VALUE = g;
     }
 
     public void setGasLimit(String g){
-        Settings.GAS_LIMIT_VALUE = g;
+        Config.GAS_LIMIT_VALUE = g;
     }
 }
