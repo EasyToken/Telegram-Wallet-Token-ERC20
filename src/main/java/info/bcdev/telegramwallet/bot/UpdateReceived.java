@@ -33,7 +33,7 @@ public class UpdateReceived {
         if (message != null && message.hasText()) {
 
             chatID = message.getChatId();
-
+            System.out.println("Your ID: " + chatID);
             String messageText = message.getText();
 
             if (BOT_ACCESS.checkAccess(chatID)) {
@@ -196,18 +196,18 @@ public class UpdateReceived {
                 }
             }
         } else if (update.hasCallbackQuery()) {
+            if (BOT_ACCESS.checkAccess(chatID)) {
+                CallbackQuery callbackQuery = update.getCallbackQuery();
 
-            CallbackQuery callbackQuery = update.getCallbackQuery();
+                chatID = callbackQuery.getMessage().getChatId();
+                wallet.setChatID(chatID);
 
-            chatID = callbackQuery.getMessage().getChatId();
-            wallet.setChatID(chatID);
-
-            if (callbackQuery.getData() != null)
-            {
-                String messageText = callbackQuery.getData();
-                if (messageText.matches("0x[a-z0-9]+")) {
-                    setActiveWallet(messageText);
-                    wallet.confirmSendSC(chatID);
+                if (callbackQuery.getData() != null) {
+                    String messageText = callbackQuery.getData();
+                    if (messageText.matches("0x[a-z0-9]+")) {
+                        setActiveWallet(messageText);
+                        wallet.confirmSendSC(chatID);
+                    }
                 }
             }
         } else {

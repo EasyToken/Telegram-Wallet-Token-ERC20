@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9a7889f-4c24-43b0-9151-86ce514b2bac" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/fileSnapshots.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Main.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/Keyboard.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/Keyboard.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/Tbot.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/Tbot.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/start.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/pages/PageStart.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/CreateEW.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/CreateEW.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Gas.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/pages/PageGas.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/ListEW.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/WalletList.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/WalletList.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/pages/PageCreate.java" afterPath="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/pages/PageCreateWallet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -79,14 +60,16 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-77">
-              <caret line="16" column="66" lean-forward="false" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
-              <folding />
+            <state relative-caret-position="15">
+              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SendCoin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SendCoin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/SendCoin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="217">
@@ -104,8 +87,8 @@
       <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+            <state relative-caret-position="195">
+              <caret line="13" column="21" lean-forward="false" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -114,8 +97,8 @@
       <file leaf-file-name="Transactions.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Transactions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="53" column="64" lean-forward="true" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
+            <state relative-caret-position="795">
+              <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5746#5764#0" expanded="true" />
@@ -152,7 +135,7 @@
       <file leaf-file-name="LoadWalletList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/LoadWalletList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
+            <state relative-caret-position="600">
               <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
               <folding />
             </state>
@@ -175,8 +158,8 @@
       <file leaf-file-name="Settings.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+            <state relative-caret-position="405">
+              <caret line="39" column="37" lean-forward="false" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
               <folding>
                 <element signature="e#3905#3906#0" expanded="true" />
                 <element signature="e#3937#3938#0" expanded="true" />
@@ -190,8 +173,8 @@
       <file leaf-file-name="Wallet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="353" column="42" lean-forward="true" selection-start-line="353" selection-start-column="42" selection-end-line="353" selection-end-column="42" />
+            <state relative-caret-position="4650">
+              <caret line="353" column="42" lean-forward="false" selection-start-line="353" selection-start-column="42" selection-end-line="353" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1854#1855#0" expanded="true" />
@@ -218,12 +201,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UpdateReceived.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UpdateReceived.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="62" column="42" lean-forward="true" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="315">
+              <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+              <folding>
+                <element signature="e#10825#10826#0" expanded="true" />
+                <element signature="e#10868#10869#0" expanded="true" />
+                <element signature="e#10918#10919#0" expanded="true" />
+                <element signature="e#10959#10960#0" expanded="true" />
+                <element signature="e#11004#11005#0" expanded="true" />
+                <element signature="e#11045#11046#0" expanded="true" />
+                <element signature="e#11088#11089#0" expanded="true" />
+                <element signature="e#11125#11126#0" expanded="true" />
+                <element signature="e#11162#11163#0" expanded="true" />
+                <element signature="e#11202#11203#0" expanded="true" />
+                <element signature="e#11236#11237#0" expanded="true" />
+                <element signature="e#11278#11279#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -662,9 +658,9 @@
         <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Sending.java" />
         <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Transactions.java" />
         <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java" />
         <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java" />
         <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/SendCoin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java" />
       </list>
     </option>
   </component>
@@ -703,6 +699,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -776,9 +774,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1038,11 +1034,12 @@
       <workItem from="1565295582319" duration="116000" />
       <workItem from="1565349029993" duration="3559000" />
       <workItem from="1565384694832" duration="5329000" />
+      <workItem from="1565467902336" duration="346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="219771000" />
+    <option name="totallyTimeSpent" value="220117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="23" width="1391" height="877" extended-state="0" />
@@ -1401,7 +1398,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/LoadWalletList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
+        <state relative-caret-position="600">
           <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
           <folding />
         </state>
@@ -1422,22 +1419,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="50" column="30" lean-forward="false" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="16" column="66" lean-forward="false" selection-start-line="16" selection-start-column="66" selection-end-line="16" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/ethereum/Wallet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="353" column="42" lean-forward="true" selection-start-line="353" selection-start-column="42" selection-end-line="353" selection-end-column="42" />
+        <state relative-caret-position="4650">
+          <caret line="353" column="42" lean-forward="false" selection-start-line="353" selection-start-column="42" selection-end-line="353" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1854#1855#0" expanded="true" />
@@ -1463,26 +1451,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="62" column="42" lean-forward="true" selection-start-line="62" selection-start-column="42" selection-end-line="62" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="195">
+          <caret line="13" column="21" lean-forward="false" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Transactions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="53" column="64" lean-forward="true" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
+        <state relative-caret-position="795">
+          <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5746#5764#0" expanded="true" />
@@ -1517,8 +1497,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+        <state relative-caret-position="405">
+          <caret line="39" column="37" lean-forward="false" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
           <folding>
             <element signature="e#3905#3906#0" expanded="true" />
             <element signature="e#3937#3938#0" expanded="true" />
@@ -1537,6 +1517,37 @@
             <element signature="method#sendingToken#0;class#SendCoin#0" expanded="false" />
             <element signature="e#3400#3401#0" expanded="true" />
             <element signature="e#3481#3482#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/info/bcdev/telegramwallet/bot/UpdateReceived.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+          <folding>
+            <element signature="e#10825#10826#0" expanded="true" />
+            <element signature="e#10868#10869#0" expanded="true" />
+            <element signature="e#10918#10919#0" expanded="true" />
+            <element signature="e#10959#10960#0" expanded="true" />
+            <element signature="e#11004#11005#0" expanded="true" />
+            <element signature="e#11045#11046#0" expanded="true" />
+            <element signature="e#11088#11089#0" expanded="true" />
+            <element signature="e#11125#11126#0" expanded="true" />
+            <element signature="e#11162#11163#0" expanded="true" />
+            <element signature="e#11202#11203#0" expanded="true" />
+            <element signature="e#11236#11237#0" expanded="true" />
+            <element signature="e#11278#11279#0" expanded="true" />
           </folding>
         </state>
       </provider>
