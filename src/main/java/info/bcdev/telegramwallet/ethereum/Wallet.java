@@ -331,7 +331,7 @@ public class Wallet implements KeyBoards, BotInstance {
         String fee_str = String.valueOf(value.longValue() / 1000 * 1);
         return Convert.fromWei(fee_str, Convert.Unit.ETHER).toString();
     }
-
+    // Web3J Transactions
     private String Transaction(SendCoin sendCoin, String msgResult){
         EthSendTransaction ethSendTransaction = sendCoin.sendingEther(
                 SEND_INSTANCE.getAddresTo(),
@@ -345,7 +345,7 @@ public class Wallet implements KeyBoards, BotInstance {
         }
         return msgResult;
     }
-
+    // Smartcontract Transaction
     private String TransactionEth(SendCoin sendCoin, String msgResult){
         TransactionReceipt transactionReceipt = sendCoin.sendingEtherSC(
                 SEND_INSTANCE.getAddresTo(),

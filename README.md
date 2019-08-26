@@ -6,7 +6,8 @@ Features Telegram Wallet:
 + Wallet Generate/Delete
 + Recovery Wallet by 12 seed code phrases
 + Obtaining credential from file wallet (Json)
-+ Sending Ether (Fee for transaction 0.001 Ether ~ 0.2$)
++ Sending Ether with Smart Contract (Fee for transaction 0.001 Ether ~ 0.2$). Method TransactionEth()
++ Sending Ether without Smart Contract (Web3J). Method Transaction()
 + Sending token ERC20
 + Get Balance
   1. Ether
